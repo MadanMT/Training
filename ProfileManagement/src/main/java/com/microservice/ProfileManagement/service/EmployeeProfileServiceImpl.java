@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EmployeeProfileServiceImpl implements EmployeeProfileService{
 
@@ -21,4 +23,20 @@ public class EmployeeProfileServiceImpl implements EmployeeProfileService{
     public List<EmployeeProfile> getEmployeeProfiles() {
         return profileRepository.findAll();
     }
+
+    @Override
+    public Optional<EmployeeProfile> findEmployeeProfile(Integer id) {
+        return profileRepository.findById(id);
+    }
+
+    @Override
+    public long getEmployeesCount(){
+        return profileRepository.count();
+    }
+
+    @Override
+    public Optional<EmployeeProfile> getEmployeeProfileByName(String name){
+        return profileRepository.getEmployeeProfileByNameContains(  name);
+    }
+
 }
